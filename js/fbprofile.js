@@ -68,10 +68,13 @@ function uploadImage(elem,evt){
 		case "profile":
 			x1=15+4;y1=175+4;x2=174;y2=160-4;
 			upload(evt);
+			context.clearRect(0,315,19,100);
+			context.clearRect(194,315,851,100);
 		break;
 		case "background":
-			x1=4;y1=4;x2=851-4;y2=315-4;
+			x1=4;y1=4;x2=851-4;y2=415-4;
 			upload(evt);
+			
 		break;
 		case 'custom':
 			//make custom stamp
