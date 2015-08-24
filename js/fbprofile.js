@@ -1,6 +1,13 @@
 drawProfilePicContainer = function(){
 	context.beginPath();
-	context.rect(15,164,183,164);
+	context.rect(15,175,183,164);
+	context.lineWidth = 4;
+	context.strokeStyle = 'red';
+	context.stroke();
+}
+drawBackgroundPicContainer = function(){
+	context.beginPath();
+	context.rect(0,0,851,315);
 	context.lineWidth = 4;
 	context.strokeStyle = 'red';
 	context.stroke();
@@ -14,13 +21,19 @@ $("#btnSave").click(function(){
 	download(this,canvas,'d-background.png');
 });
 $("#btnProfileSave").click(function(){
-	var imageData = context.getImageData(15+4, 164+4, 168, 168);
+	var imageData = context.getImageData(15+4, 175+4, 168, 168);
 	prcanvas = document.createElement('canvas');
 	prcanvas.setAttribute('width',160);
 	prcanvas.setAttribute('height',160);
 	ctcanvas = prcanvas.getContext('2d');
 	ctcanvas.putImageData(imageData,0,0);
 	download(this,prcanvas,'d-profile.png');		
+});
+$('#btnProfileFrame').click(function(){
+	drawProfilePicContainer();
+});
+$('#btnBackgroundFrame').click(function(){
+	drawBackgroundPicContainer();
 });
 var canvas = document.getElementById('mycanvas'),
 	context = canvas.getContext('2d');
@@ -53,11 +66,11 @@ upload = function(evt){
 function uploadImage(elem,evt){
 	switch(elem){
 		case "profile":
-			x1=15+4;y1=164+4;x2=174;y2=160;
+			x1=15+4;y1=175+4;x2=174;y2=160-4;
 			upload(evt);
 		break;
 		case "background":
-			x1=4;y1=4;x2=851-4;y2=350-4;
+			x1=4;y1=4;x2=851-4;y2=315-4;
 			upload(evt);
 		break;
 		case 'custom':
