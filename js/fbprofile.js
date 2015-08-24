@@ -12,6 +12,11 @@ doupload = function(elem){
 }
 $("#btnSave").click(function(){
 	download(this,canvas,'background.png');
+	imageData = context.getImageData(15+4, 164+4, 168, 168);
+	prcanvas = document.createElement('canvas');
+	ctcanvas = prcanvas.getContext('2d');
+	ctcanvas.putImageData(imageData,0,0);
+	download(this,prcanvas,'profile.png');
 });
 var canvas = document.getElementById('mycanvas'),
 	context = canvas.getContext('2d');
