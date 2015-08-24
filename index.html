@@ -306,10 +306,9 @@
 				</div>
 			</div>
 			<div class="dr"><span></span></div>
-			<input type=file id='profilepic'onchange='uploadImage(event)' />
-			<div class="dr"><span></span></div>
-			Upload Profile Bckground
-			<input type=file id='background' onchange='uploadBackground(event)' />
+			<input type=file id='profilepic' class='hidingelem' onchange='uploadImage("profile",event)' />
+			<input type=file id='background' class='hidingelem' onchange='uploadImage("background",event)' />
+			<!--<input type=file id='background' class='hidingelem' onchange='uploadBackground(event)' />-->
 			
 		</div>
     </div>

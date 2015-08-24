@@ -23,40 +23,30 @@ detectEvent = function(event){
 	if(posX>15 && posX<198 && posY<326 && posY>164){
 		doupload('profilepic');
 	}
-	console.log(posX,posY);
 }
 canvas.addEventListener('click',detectEvent,false);
-function uploadImage(evt){
-  var input = evt.target;
-  var fileReader = new FileReader();
-  fileReader.onloadend = () => {
+function uploadImage(elem,evt){
+	switch(elem){
+		case "profile":
+		x1=15+4;y1=164+4;x2=174;y2=160;
+		break;
+		case "background":
+		x1=4;y1=4;x2=851;y2=350;
+	}
+	var input = evt.target;
+	var fileReader = new FileReader();
+	fileReader.onloadend = () => {
 	  $("body").css("cursor","wait");
 		resizeImage(fileReader.result,(uri) => {
 			imageObj = new Image();
 			imageObj.onload = function(){
-				context.drawImage(imageObj,15+4,164+4,174,160);
+				context.drawImage(imageObj,x1,y1,x2,y2);
 			}
 			imageObj.src = uri;
 			$("body").css("cursor","default");
 		});
-  }
-  fileReader.readAsDataURL(input.files[0]);
-}
-function uploadBackground(evt){
-  var input = evt.target;
-  var fileReader = new FileReader();
-  fileReader.onloadend = () => {
-	  $("body").css("cursor","wait");
-		resizeImage(fileReader.result,(uri) => {
-			imageObj = new Image();
-			imageObj.onload = function(){
-				context.drawImage(imageObj,4,4,851,350);
-			}
-			imageObj.src = uri;
-			$("body").css("cursor","default");
-		});
-  }
-  fileReader.readAsDataURL(input.files[0]);
+	}
+	fileReader.readAsDataURL(input.files[0]);
 }
 function resizeImage(url, callback){
 	var canvas = document.createElement("canvas");
