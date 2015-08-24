@@ -6,9 +6,8 @@ drawProfilePicContainer = function(){
 	context.stroke();
 }
 doupload = function(elem){
-	document.getElementById(elem).click();
 	setTimeout(function(){
-		document.getElementById('profilepic').click();
+		document.getElementById(elem).click();
 		},0);
 }
 $("#btnSave").click(function(){
