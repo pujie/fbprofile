@@ -5,10 +5,28 @@ drawProfilePicContainer = function(){
 	context.strokeStyle = 'red';
 	context.stroke();
 }
+doupload = function(elem){
+	document.getElementById(elem).click();
+	setTimeout(function(){
+		document.getElementById('profilepic').click();
+		},0);
+}
+$("#btnSave").click(function(){
+	download(this,canvas,'background.png');
+});
 var canvas = document.getElementById('mycanvas'),
-	context = canvas.getContext('2d'),
-	pcanvas = document.getElementById('photo');
+	context = canvas.getContext('2d');
 drawProfilePicContainer();
+detectEvent = function(event){
+	var rect = canvas.getBoundingClientRect();
+	posX = event.clientX -rect.left;
+	posY = event.clientY - rect.top;
+	if(posX>15 && posX<198 && posY<326 && posY>164){
+		doupload('profilepic');
+	}
+	console.log(posX,posY);
+}
+canvas.addEventListener('click',detectEvent,false);
 function uploadImage(evt){
   var input = evt.target;
   var fileReader = new FileReader();

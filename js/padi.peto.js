@@ -529,9 +529,7 @@
 		context.putImageData(imageData, 0, 0);
 		$(this).attr('disabled',true)
 	});
-	$("#btnSave").click(function(){
-		download(this,canvas,'petosyarif.png');
-	});
+
 	$("#btnArrow").click(function(){
 		mycursor = "arrow";
 	});

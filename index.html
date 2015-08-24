@@ -81,7 +81,7 @@
 		</div>
 	</div>
     <div class="header">
-        <a class="logo" href="index.html"><img src="img/logo.png" alt="Peto Syarif" title="Peto Syarif"/></a>
+        <a class="logo" href="index.html"><img src="img/logo.png" alt="FB Profile" title="FB Profile"/></a>
         <ul class="header_menu">
             <li class="list_icon"><a href="#">&nbsp;</a></li>
         </ul>
@@ -283,6 +283,8 @@
 				</div>
 				<div class="right">
 					<div class="btn-group">
+						<button  class="btn" id='userprofile' onclick='doupload("profilepic")'><span class="icon-user"></span></button>
+						<button  class="btn" id='userprofile' onclick='doupload("background")'><span class="icon-picture"></span></button>
 						<button data-toggle="dropdown" class="btn dropdown-toggle">Size <span class="caret"></span></button>
 						<ul class="dropdown-menu pull-right">
 							<li><a class='pointer stampsize' value='small'>Small</a></li>
@@ -304,11 +306,11 @@
 				</div>
 			</div>
 			<div class="dr"><span></span></div>
-			Upload Profile Picture
-			<input type=file onchange='uploadImage(event)' />
+			<input type=file id='profilepic'onchange='uploadImage(event)' />
 			<div class="dr"><span></span></div>
 			Upload Profile Bckground
-			<input type=file onchange='uploadBackground(event)' />
+			<input type=file id='background' onchange='uploadBackground(event)' />
+			
 		</div>
     </div>
 	<script type="text/javascript" src="js/padi.peto.js"></script>
