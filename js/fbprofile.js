@@ -63,17 +63,32 @@ upload = function(evt){
 	}
 	fileReader.readAsDataURL(input.files[0]);	
 }
+uplbackground = function(evt){
+	var input = evt.target,
+	fileReader = new FileReader(),
+	imageObj = new Image();
+	fileReader.onload = () => {
+		imageObj.onload = function(){
+			context.drawImage(imageObj,x1,y1,x2,y2);
+			context.clearRect(0,315,19,100);
+			context.clearRect(194,315,851,100);		
+		}
+		imageObj.src = fileReader.result;
+	};
+	fileReader.readAsDataURL(input.files[0]);
+}
 function uploadImage(elem,evt){
 	switch(elem){
 		case "profile":
 			x1=15+4;y1=175+4;x2=174;y2=160-4;
 			upload(evt);
-			context.clearRect(0,315,19,100);
-			context.clearRect(194,315,851,100);
+				context.clearRect(0,315,19,100);
+				context.clearRect(194,315,851,100);				
 		break;
 		case "background":
 			x1=4;y1=4;x2=851-4;y2=415-4;
-			upload(evt);
+			//upload(evt);
+			uplbackground(evt);
 			
 		break;
 		case 'custom':
