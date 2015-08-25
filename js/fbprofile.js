@@ -1,6 +1,6 @@
 drawProfilePicContainer = function(){
 	context.beginPath();
-	context.rect(15,175,183,164);
+	context.rect(15,175,183,166);
 	context.lineWidth = 4;
 	context.strokeStyle = 'red';
 	context.stroke();
@@ -27,10 +27,16 @@ doupload = function(elem){
 		},0);
 }
 $("#btnSave").click(function(){
-	download(this,canvas,'d-background.png');
+	var imageData = context.getImageData(0, 0, 851, 315);
+	bgcanvas = document.createElement('canvas');
+	bgcanvas.setAttribute('width',851);
+	bgcanvas.setAttribute('height',315);
+	bgcontext = bgcanvas.getContext('2d');
+	bgcontext.putImageData(imageData,0,0);
+	download(this,bgcanvas,'d-background.png');
 });
 $("#btnProfileSave").click(function(){
-	var imageData = context.getImageData(15+4, 175+4, 168, 168);
+	var imageData = context.getImageData(15+4, 175+4, 168-4, 168-4);
 	prcanvas = document.createElement('canvas');
 	prcanvas.setAttribute('width',160);
 	prcanvas.setAttribute('height',160);
