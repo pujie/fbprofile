@@ -146,7 +146,9 @@
 		context.drawImage(img,startX,startY,600,340);
 	}
 	drawText = function(startX,startY,mousepos,ocolor){
-		//clearRect();
+		var fsize = 16;
+		fsize *= scale;
+		console.log('scale',scale);
 		context.putImageData(imageData, 0, 0);
 		context.save();
 		th = mousepos.x - startX;
@@ -154,7 +156,8 @@
 		radian = Math.atan2(tv , th);
 		context.translate(startX,startY);
 		context.rotate(radian);
-		context.font = "16px serif";
+		context.font = fsize+"px "+fonttype;
+		console.log('context.font',context.font);
 		context.fillStyle = ocolor;
 		context.textAlign = "left";
 		context.fillText($("#textToWrite").val(),0,0);
@@ -293,6 +296,7 @@
 		size = 'small',
 		scale = 1,
 		width = 40, height = 70,
+		fonttype = 'opensans',
 		imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
 	canvas.addEventListener('mousedown',function(evt){
 		var mousepos = getMousePos(canvas,evt),ocolor = '#'+$('.color').val();
@@ -624,6 +628,19 @@
 				break;
 			case 'big':
 				scale = 3;
+				break;
+		}
+	});
+	$('.fonttype').click(function(){
+		console.log('fonttype',$(this).attr('value'));
+		switch($(this).attr('value')){
+			case 'amaranth':
+				fonttype = 'amaranth';
+				console.log(fonttype,fonttype);
+				break;
+			case 'opensans':
+				fonttype = 'opensans';
+				console.log(fonttype,fonttype);
 				break;
 		}
 	});
