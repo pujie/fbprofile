@@ -5,12 +5,21 @@ drawProfilePicContainer = function(){
 	context.strokeStyle = 'red';
 	context.stroke();
 }
+customline = (startx,starty,endx,endy,ocolor,linewidth) => {
+	context.beginPath();
+	context.moveTo(startx,starty);
+	context.lineTo(endx,endy);
+	context.strokeStyle=ocolor;
+	context.lineWidth = linewidth;
+	context.stroke();	
+}
 drawBackgroundPicContainer = function(){
 	context.beginPath();
-	context.rect(0,0,851,315);
-	context.lineWidth = 4;
-	context.strokeStyle = 'red';
-	context.stroke();
+	customline(1,1,1,315,'red',4);
+	customline(1,315,15,315,'red',4);
+	customline(198,315,851,315,'red',4);
+	customline(851,315,851,1,'red',4);
+	customline(1,1,851,1,'red',4);
 }
 doupload = function(elem){
 	setTimeout(function(){
@@ -27,7 +36,7 @@ $("#btnProfileSave").click(function(){
 	prcanvas.setAttribute('height',160);
 	ctcanvas = prcanvas.getContext('2d');
 	ctcanvas.putImageData(imageData,0,0);
-	download(this,prcanvas,'d-profile.png');		
+	download(this,prcanvas,'d-profile.png');
 });
 $('#btnProfileFrame').click(function(){
 	drawProfilePicContainer();
@@ -61,7 +70,7 @@ upload = function(evt){
 			$("body").css("cursor","default");
 		});
 	}
-	fileReader.readAsDataURL(input.files[0]);	
+	fileReader.readAsDataURL(input.files[0]);
 }
 uplbackground = function(evt){
 	var input = evt.target,
@@ -71,7 +80,9 @@ uplbackground = function(evt){
 		imageObj.onload = function(){
 			context.drawImage(imageObj,x1,y1,x2,y2);
 			context.clearRect(0,315,19,100);
-			context.clearRect(194,315,851,100);		
+			context.clearRect(194,315,851,100);
+			drawProfilePicContainer();
+			drawBackgroundPicContainer();
 		}
 		imageObj.src = fileReader.result;
 	};
@@ -82,14 +93,11 @@ function uploadImage(elem,evt){
 		case "profile":
 			x1=15+4;y1=175+4;x2=174;y2=160-4;
 			upload(evt);
-				context.clearRect(0,315,19,100);
-				context.clearRect(194,315,851,100);				
 		break;
 		case "background":
-			x1=4;y1=4;x2=851-4;y2=415-4;
-			//upload(evt);
+			x1=4;y1=4;x2=851-4;y2=335-4;
 			uplbackground(evt);
-			
+
 		break;
 		case 'custom':
 			//make custom stamp
